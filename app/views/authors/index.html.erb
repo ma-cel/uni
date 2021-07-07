@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Autoren</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nachname</th>
+      <th>Vorname</th>
+      <th>Zugehörigkeit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= author.family_name %></td>
+        <td><%= author.given_name %></td>
+        <td><%= author.affiliation %></td>
+        <td><%= link_to 'Anzeigen', author %></td>
+        <td><%= link_to 'Bearbeiten', edit_author_path(author) %></td>
+        <td><%= link_to 'Löschen', author, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Neuer Autor', new_author_path %>

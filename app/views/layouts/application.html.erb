@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wba2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8"/>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>    
+  </head>
+
+  <body>
+  <div class="container">
+  <div class="sidebar">
+    <dl>Autor<dl>
+    <dt><%=link_to 'alle', authors_path%></dt>
+    <dt><%=link_to 'ohne Buch', authors_path(filter: 'no_books')%></dt>
+
+    <dl>Bücher<dl>
+    <dt><%=link_to('Alle', {}, {:href => '/books'})%></dt>
+    <dt>ohne Exemplare</dt>
+
+    <dl>Buchexemplare<dl>
+    <dt><%=link_to('Alle', {}, {:href => '/book_instances'})%></dt>
+    <dt>Ausleihbar</dt>
+    <dt>Vorgemerkt</dt>
+    <dt>Ausgeliehen</dt>
+    <dt>überfällig</dt>
+
+
+    <dl>Benutzer<dl>
+    <dt><%=link_to('Alle', {}, {:href => '/users'})%></dt>
+    <dt>Mit Vormerkungen</dt>    
+    <dt>Mit Ausleihen</dt>
+    <dt>Mit überfälligen Ausleihen</dt>
+</div>
+<div class="main">
+    <%= yield %>
+</div>
+  </div>  
+  </body>
+</html>

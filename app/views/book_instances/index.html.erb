@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Buchinstanzen</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Signatur</th>
+      <th>Gekauft am</th>
+      <th>Geliehen von</th>
+      <th>Buch</th>
+      <th>Reserviert von</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @book_instances.each do |book_instance| %>
+      <tr>
+        <td><%= book_instance.shelfmark %></td>
+        <td><%= book_instance.purchased_at %></td>
+        <td><%= book_instance.lended_by %></td>
+        <td><%= book_instance.book.title %></td>
+        <td><%= book_instance.reserved_by %></td>
+        <td><%= link_to 'Anzeigen', book_instance %></td>
+        <td><%= link_to 'Leihen', lending_book_instance_path(book_instance) %></td>
+        <td><%= link_to 'Bearbeiten', edit_book_instance_path(book_instance) %></td>
+        <td><%= link_to 'Löschen', book_instance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Neue Buchinstanz', new_book_instance_path %>

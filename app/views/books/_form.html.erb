@@ -1,0 +1,48 @@
+<%= form_with(model: book) do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, 'Titel' %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publisher, 'Herausgeber' %>
+    <%= form.text_field :publisher %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author, 'Autor' %>
+    <%= form.collection_select(:authors, Author.all, :id, :family_name, prompt: true, multiple: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pub_year, 'Jahr der Publikation' %>
+    <%= form.number_field :pub_year, min: 2021 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edition , 'Edition'%>
+    <%= form.number_field :edition%>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :isbn, 'ISBN' %>
+    <%= form.text_field :isbn, required: true, maxlength: 13, pattern:'^(?:ISBN(?:-13)?:?\ )?(?=[0-9]{13}$|(?=(?:[0-9]+[-\ ]){4})[-\ 0-9]{17}$)97[89][-\ ]?[0-9]{1,5}[-\ ]?[0-9]+[-\ ]?[0-9]+[-\ ]?[0-9]$' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

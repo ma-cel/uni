@@ -1,0 +1,53 @@
+<%= form_with(model: book_instance) do |form| %>
+  <% if book_instance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book_instance.errors.count, "error") %> prohibited this book_instance from being saved:</h2>
+
+      <ul>
+        <% book_instance.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :shelfmark %>
+    <%= form.text_field :shelfmark , disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lended_by_id %>
+    <%= form.collection_select(:lended_by, User.all, :id, :family_name, {:include_blank => true}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :book_id %>
+    <%= form.collection_select(:book_id, Book.all, :id, :title,{},{disabled: true })%>
+  </div>
+
+  <div class="field">
+    <%= form.label :reserved_by_id %>
+    <%= form.collection_select(:reserved_by, User.all, :id, :family_name, include_blank: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :checkout_at %>
+    <%= form.date_select :checkout_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_at %>
+    <%= form.date_select :due_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :returned_at %>
+    <%= form.date_select :returned_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

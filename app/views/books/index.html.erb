@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bücher</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titel</th>
+      <th>Heruasgeber</th>
+      <th>Jahr der Publikation</th>
+      <th>Edition</th>
+      <th>ISBN</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.publisher %></td>
+        <td><%= book.pub_year %></td>
+        <td><%= book.edition %></td>
+        <td><%= book.isbn %></td>
+        <td><%= link_to 'Anzeigen', book %></td>
+        <td><%= link_to 'Bearbeiten', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Neues Buch', new_book_path %>

@@ -1,0 +1,32 @@
+<%= form_with(model: book_instance) do |form| %>
+  <% if book_instance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book_instance.errors.count, "error") %> prohibited this book_instance from being saved:</h2>
+
+      <ul>
+        <% book_instance.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :shelfmark, 'Signatur' %>
+    <%= form.text_field :shelfmark %>
+  </div>
+
+  <div class="field">
+    <%= form.label :purchased_at , 'gekauft am'%>
+    <%= form.date_select :purchased_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :book_id, 'Buch'%>
+    <%= form.collection_select(:book_id, Book.all, :id, :title, prompt: true) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit%>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Signatur:</strong>
+  <%= @book_instance.shelfmark %>
+</p>
+
+<p>
+  <strong>Gekuaft am:</strong>
+  <%= @book_instance.purchased_at %>
+</p>
+
+<p>
+  <strong>Geliehen von:</strong>
+  <%= @book_instance.lended_by_id %>
+</p>
+
+<p>
+  <strong>Buch:</strong>
+  <%= @book_instance.book.title %>
+</p>
+
+<p>
+  <strong>Reserviert von:</strong>
+  <%= @book_instance.reserved_by %>
+</p>
+
+<%= link_to 'Bearbeiten', edit_book_instance_path(@book_instance) %> |
+<%= link_to 'Zurück', book_instances_path %>
